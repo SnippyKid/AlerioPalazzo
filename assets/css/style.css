@@ -1,0 +1,393 @@
+/* ================================
+   ALERIO PALAZZO - LUXURY E-COMMERCE
+   Color Palette:
+   - #555879 (Palazzo Purple)
+   - #98A1BC (Palazzo Blue)
+   - #DED3C4 (Palazzo Tan)
+   - #F4EBD3 (Palazzo Cream)
+   ================================ */
+
+/* ============ LUXURY STYLISH FONT ============ */
+@font-face {
+    font-family: 'Luxury Stylish';
+    src: url('../font/luxury-stylish-modern-serif-font/luxury-stylish.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* ============ GLOBAL RESET ============ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'ClashDisplay-Regular', sans-serif;
+    background-color: #F4EBD3;
+    color: #555879;
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* ============ UTILITY CLASSES ============ */
+.text-palazzo-purple { color: #555879; }
+.text-palazzo-blue { color: #98A1BC; }
+.text-palazzo-tan { color: #DED3C4; }
+.text-palazzo-cream { color: #F4EBD3; }
+
+.bg-palazzo-purple { background-color: #555879; }
+.bg-palazzo-blue { background-color: #98A1BC; }
+.bg-palazzo-tan { background-color: #DED3C4; }
+.bg-palazzo-cream { background-color: #F4EBD3; }
+
+/* ============ TYPOGRAPHY ============ */
+.font-luxury {
+    font-family: 'Luxury Stylish', serif;
+}
+
+.font-clash {
+    font-family: 'ClashDisplay-Variable', sans-serif;
+}
+
+/* ============ HERO SECTION ============ */
+#hero {
+    background: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
+}
+
+#hero-video {
+    filter: brightness(0.85) contrast(1.1) saturate(1.2);
+    transform: scale(1.05);
+}
+
+#video-container {
+    clip-path: inset(0% 0% 0% 0%);
+}
+
+/* Film grain texture */
+.grain-overlay {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.5' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    animation: grain 8s steps(10) infinite;
+}
+
+@keyframes grain {
+    0%, 100% { transform: translate(0, 0); }
+    10% { transform: translate(-5%, -10%); }
+    30% { transform: translate(3%, -15%); }
+    50% { transform: translate(12%, 9%); }
+    70% { transform: translate(9%, 4%); }
+    90% { transform: translate(-1%, 7%); }
+}
+
+/* Logo styling - always visible */
+.logo {
+    transition: all 0.5s ease;
+    mix-blend-mode: difference;
+}
+
+.logo-content {
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+    transition: all 0.8s ease;
+}
+
+/* Spotlight active state */
+.spotlight-active .logo-content {
+    filter: drop-shadow(0 0 25px rgba(255, 255, 255, 0.8)) 
+            drop-shadow(0 0 50px rgba(255, 255, 255, 0.4))
+            drop-shadow(0 0 100px rgba(255, 255, 255, 0.2));
+    transform: scale(1.04);
+    transition: all 0.8s ease;
+}
+
+.spotlight-active .hero-title {
+    filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.5)) 
+            drop-shadow(0 0 60px rgba(255, 255, 255, 0.3))
+            drop-shadow(0 0 120px rgba(255, 255, 255, 0.15));
+    text-shadow: 0 0 80px rgba(255, 255, 255, 0.4);
+    transition: all 0.8s ease;
+}
+
+.spotlight-active .hero-subtitle,
+.spotlight-active .hero-tagline {
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.3));
+    transition: all 0.8s ease;
+}
+
+/* Keep hero content BELOW overlay so spotlight reveals it */
+
+/* Spotlight button */
+#spotlight-toggle {
+    backdrop-filter: blur(10px);
+    transition: all 0.5s ease;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+}
+
+#spotlight-toggle:hover {
+    transform: rotate(15deg) scale(1.1);
+    background: rgba(0, 0, 0, 0.3);
+}
+
+#spotlight-toggle:active {
+    transform: rotate(0deg) scale(0.95);
+}
+
+.spotlight-icon-container {
+    transition: transform 0.5s ease;
+}
+
+#spotlight-toggle:hover .spotlight-icon-container {
+    transform: rotate(20deg);
+}
+
+/* Ping animation */
+@keyframes ping-slow {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    75%, 100% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+.animate-ping-slow {
+    animation: ping-slow 3s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* Spotlight overlay effects */
+#spotlight-overlay {
+    transition: opacity 0.5s ease;
+}
+
+#spotlight-canvas {
+    display: block;
+}
+
+/* Hero animations setup */
+#hero-content {
+    will-change: opacity, transform;
+}
+
+.hero-title {
+    transform: translateY(30px);
+    text-shadow: 0 10px 50px rgba(0, 0, 0, 0.5),
+                 0 0 100px rgba(255, 255, 255, 0.1);
+}
+
+.hero-title-line {
+    display: inline-block;
+}
+
+.hero-subtitle {
+    transform: translateY(20px);
+    letter-spacing: 0.5em;
+}
+
+.hero-tagline {
+    transform: translateY(20px);
+}
+
+.hero-ornament-top,
+.hero-ornament-bottom {
+    transform: scaleX(0);
+}
+
+
+/* Button glow effect */
+.btn-glow {
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+    filter: blur(20px);
+}
+
+/* Scroll Line Animation */
+.scroll-line {
+    animation: scroll-move 2s ease-in-out infinite;
+}
+
+@keyframes scroll-move {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(32px);
+        opacity: 0;
+    }
+}
+
+/* Button hover effect */
+.hero-btn {
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.hero-btn:hover {
+    border-color: white;
+    transform: translateY(-2px);
+}
+
+/* Content Section */
+#content-section {
+    position: relative;
+}
+
+/* Background orbs animation */
+.bg-orb-1 {
+    animation: float 20s ease-in-out infinite;
+}
+
+.bg-orb-2 {
+    animation: float 25s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    50% {
+        transform: translate(30px, -30px) scale(1.1);
+    }
+}
+
+/* Image animations */
+.reveal-image {
+    transform: translateY(80px) scale(0.85) rotateX(10deg);
+    perspective: 1000px;
+}
+
+
+/* Content elements */
+.content-ornament {
+    transform: scaleX(0);
+}
+
+.content-label {
+    transform: translateY(30px);
+}
+
+.content-heading {
+    opacity: 0;
+}
+
+.content-divider {
+    transform: scaleX(0);
+}
+
+.content-text-1,
+.content-text-2 {
+    transform: translateY(30px);
+}
+
+.content-stat {
+    transform: translateY(40px) scale(0.8);
+}
+
+.content-btn {
+    transform: translateY(30px);
+}
+
+/* Hover effects */
+.reveal-image {
+    transition: transform 0.5s ease;
+}
+
+.reveal-image:hover {
+    transform: translateY(-10px) scale(1) rotateX(0deg);
+}
+
+/* ============ PRODUCTS SECTION ============ */
+#products-section {
+    position: relative;
+}
+
+.products-label,
+.products-desc {
+    transform: translateY(30px);
+}
+
+.products-heading {
+    transform: translateY(50px) scale(1.1);
+    filter: blur(10px);
+}
+
+.products-divider {
+    transform: scaleX(0);
+}
+
+.product-card {
+    transform: translateY(60px) scale(0.9);
+}
+
+.products-cta {
+    transform: translateY(40px);
+}
+
+/* Product card hover effects */
+.product-card img {
+    filter: brightness(1) contrast(1);
+}
+
+.product-card:hover img {
+    filter: brightness(1.1) contrast(1.05);
+}
+
+/* ============ FOOTER ============ */
+.footer-col {
+    transform: translateY(40px);
+}
+
+.footer-divider {
+    transform: scaleX(0);
+}
+
+.footer-bottom {
+    transform: translateY(20px);
+}
+
+.footer-link {
+    position: relative;
+    display: inline-block;
+}
+
+.footer-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: currentColor;
+    transition: width 0.3s ease;
+}
+
+.footer-link:hover::after {
+    width: 100%;
+}
+
+.social-icon {
+    transform: translateY(0);
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    transform: translateY(-4px);
+}
+
+/* ============ SMOOTH TRANSITIONS ============ */
+button {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(85, 88, 121, 0.3);
+}
